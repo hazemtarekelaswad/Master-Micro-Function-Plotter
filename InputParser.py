@@ -2,11 +2,10 @@ import cexprtk as ctk
 import numpy as np
 
 class InputParser:
-    def __init__(self, fx: str, xmin: str, xmax: str, step: float):
+    def __init__(self, fx: str, xmin: str, xmax: str):
         self.fx = fx
         self.xmin = xmin
         self.xmax = xmax
-        self.step = step
     
     def __parseFx(self):
         Xs = np.linspace(self.xmin, self.xmax)
