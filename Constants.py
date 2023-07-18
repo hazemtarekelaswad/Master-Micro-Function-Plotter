@@ -1,3 +1,5 @@
+from PySide2.QtGui import QFont
+
 class Constants:
     WINDOW_SIZE = (1300, 800)
     WINDOW_TITLE = "Function Plotter"
@@ -10,6 +12,7 @@ class Constants:
 
     LABEL_FONT = (FONT_FAMILY, FONT_SIZE, FONT_WEIGHT // 2, FONT_ITALIC)
     INPUT_FONT = (FONT_FAMILY, FONT_SIZE, FONT_WEIGHT, FONT_ITALIC)
+    TITLE_FONT = (FONT_FAMILY, FONT_SIZE * 2, QFont.Bold, False)
 
     PLOT_BUTTON_TEXT = "Plot"
     PLOT_BUTTON_HEIGHT = 75

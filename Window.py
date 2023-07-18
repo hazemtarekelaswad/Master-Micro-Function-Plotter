@@ -98,19 +98,31 @@ class Window(QWidget):
 
         # Create the main grid and add the widgets to it
         grid = QGridLayout()
-        grid.addWidget(self.fxLabel, 0, 0)
-        grid.addWidget(self.fx, 0, 1)
-        grid.addWidget(self.xminLabel, 1, 0)
-        grid.addWidget(self.xmin, 1, 1)
-        grid.addWidget(self.xmaxLabel, 2, 0)
-        grid.addWidget(self.xmax, 2, 1)
-        grid.addWidget(self.plotButton, 3, 0, 1, 2)
+        self.title = QLabel(Constants.WINDOW_TITLE)
+        self.title.setFont(QFont(*Constants.TITLE_FONT))
+        self.title.setAlignment(QtCore.Qt.AlignCenter)
+
+        grid.addWidget(self.title, 0, 0, 1, 3)
+        grid.addWidget(self.fxLabel, 1, 0)
+        grid.addWidget(self.fx, 1, 1)
+        grid.addWidget(self.xminLabel, 2, 0)
+        grid.addWidget(self.xmin, 2, 1)
+        grid.addWidget(self.xmaxLabel, 3, 0)
+        grid.addWidget(self.xmax, 3, 1)
+        grid.addWidget(self.plotButton, 4, 0, 1, 2)
 
         plotImage = Plotter(self, np.zeros((5, 5)), np.zeros((5, 5)))
-        grid.addWidget(plotImage, 0, 2, 4, 1)
+        grid.addWidget(plotImage, 1, 2, 4, 1)
 
         # Configure the grid
         grid.setHorizontalSpacing(20)
+        
+        grid.setRowMinimumHeight(0, 1)
+        grid.setRowMinimumHeight(1, 150)
+        grid.setRowMinimumHeight(2, 150)
+        grid.setRowMinimumHeight(3, 150)
+        grid.setRowMinimumHeight(4, 150)
+
         grid.setColumnMinimumWidth(0, 100)
         grid.setColumnMinimumWidth(1, 300)
         grid.setColumnMinimumWidth(2, 800)
@@ -126,8 +138,8 @@ class Window(QWidget):
             # Parse the input, then plot the points returned by the parser
             Xs, Ys = InputParser(
                 self.fx.text(), self.xmin.text(), self.xmax.text()).parse()
-            self.mainGrid.itemAtPosition(0, 2).widget().close()
-            self.mainGrid.addWidget(Plotter(self, Xs, Ys), 0, 2, 4, 1)
+            self.mainGrid.itemAtPosition(1, 2).widget().close()
+            self.mainGrid.addWidget(Plotter(self, Xs, Ys), 1, 2, 4, 1)
         except Exception as e:
             # If an error occurs, show an error message box
             self.createErrorMessageBox(str(e))
