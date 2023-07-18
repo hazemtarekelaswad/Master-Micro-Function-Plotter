@@ -23,14 +23,15 @@ import numpy as np
 # Local imports
 from InputParser import InputParser
 from Plotter import Plotter
+from Constants import Constants
 
 
 class Window(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Function Plotter")
-        self.setFixedSize(1300, 800)
-        self.setWindowIcon(QIcon("sinus.png"))
+        self.setWindowTitle(Constants.WINDOW_TITLE)
+        self.setFixedSize(*Constants.WINDOW_SIZE)
+        self.setWindowIcon(QIcon(Constants.WINDOW_ICON))
         self.centerWindow()
         self.mainGrid = self.createMainGrid()
         self.setLayout(self.mainGrid)
@@ -55,7 +56,7 @@ class Window(QWidget):
     # This function is used to create an error message box
     def createErrorMessageBox(self, text):
         self.errorMsg = text
-        errorBox = QMessageBox().critical(self, "Error | Invalid Input", text)
+        _ = QMessageBox().critical(self, "Error | Invalid Input(s)", text)
 
     # This function is used to create the main grid of the window
     def createMainGrid(self):
@@ -65,16 +66,16 @@ class Window(QWidget):
         self.xmax = QDoubleSpinBox()
 
         self.fxLabel = QLabel("f(x): ")
-        self.fxLabel.setFont(QFont("Cambria", 15, 5, True))
+        self.fxLabel.setFont(QFont(*Constants.LABEL_FONT))
         self.xminLabel = QLabel("X min: ")
-        self.xminLabel.setFont(QFont("Cambria", 15, 5, True))
+        self.xminLabel.setFont(QFont(*Constants.LABEL_FONT))
         self.xmaxLabel = QLabel("X max: ")
-        self.xmaxLabel.setFont(QFont("Cambria", 15, 5, True))
+        self.xmaxLabel.setFont(QFont(*Constants.LABEL_FONT))
 
-        self.fx.setPlaceholderText("i.e. 9*x^2+6")
+        self.fx.setPlaceholderText(Constants.FX_PLACEHOLDER_TEXT)
 
-        self.xmin.setRange(-1000000000, 1000000000)
-        self.xmax.setRange(-1000000000, 1000000000)
+        self.xmin.setRange(*Constants.X_MIN_RANGE)
+        self.xmax.setRange(*Constants.X_MAX_RANGE)
 
         self.xmin.setValue(0)
         self.xmax.setValue(1)
@@ -82,17 +83,17 @@ class Window(QWidget):
         self.xmin.setDecimals(3)
         self.xmax.setDecimals(3)
 
-        self.fx.setFixedHeight(50)
-        self.xmin.setFixedHeight(50)
-        self.xmax.setFixedHeight(50)
+        self.fx.setFixedHeight(Constants.INPUT_HEIGHT)
+        self.xmin.setFixedHeight(Constants.INPUT_HEIGHT)
+        self.xmax.setFixedHeight(Constants.INPUT_HEIGHT)
 
-        self.fx.setFont(QFont("Cambria", 15, 10, True))
-        self.xmin.setFont(QFont("Cambria", 15, 10, True))
-        self.xmax.setFont(QFont("Cambria", 15, 10, True))
+        self.fx.setFont(QFont(*Constants.INPUT_FONT))
+        self.xmin.setFont(QFont(*Constants.INPUT_FONT))
+        self.xmax.setFont(QFont(*Constants.INPUT_FONT))
 
         self.plotButton = QPushButton("Plot", self)
-        self.plotButton.setFont(QFont("Cambria", 15, 10, True))
-        self.plotButton.setFixedHeight(75)
+        self.plotButton.setFont(QFont(*Constants.INPUT_FONT))
+        self.plotButton.setFixedHeight(Constants.PLOT_BUTTON_HEIGHT)
         self.plotButton.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
 
         # Create the main grid and add the widgets to it
