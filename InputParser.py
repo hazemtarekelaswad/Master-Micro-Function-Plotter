@@ -29,6 +29,8 @@ class InputParser:
         return True, ""
     
     def __isFxValid(self):
+        if self.fx == "":
+            return False, "f(x) shouldn't be empty"
         return True, ""
 
     def __parseXMin(self):
@@ -48,12 +50,12 @@ class InputParser:
         isXMaxValid, xMaxErrorMsg = self.__isXMaxValid()
         isFxValid, fxErrorMsg = self.__isFxValid()
 
+        if not isFxValid:
+            raise Exception(fxErrorMsg)
         if not isXMinValid:
             raise Exception(xMinErrorMsg)
         if not isXMaxValid:
             raise Exception(xMaxErrorMsg)
-        if not isFxValid:
-            raise Exception(fxErrorMsg)
         self.__parseXMin()
         self.__parseXMax()
 
