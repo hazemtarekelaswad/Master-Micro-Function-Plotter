@@ -49,11 +49,7 @@ pip install -r requirements.txt
     ```
 
 ## Screenshots
-![Screenshot 1]()
-![Screenshot 2]()
-![Screenshot 3]()
-![Screenshot 4]()
-![Screenshot 5]()
-![Screenshot 6]()
-![Screenshot 7]()
+<p align="center">
+  <img src="https://github.com/hazemtarekelaswad/Master-Micro-Function-Plotter/blob/main/screenshots/1.png?raw=true" />
+</p>
 
