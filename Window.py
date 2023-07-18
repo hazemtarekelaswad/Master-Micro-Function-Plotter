@@ -1,25 +1,26 @@
+'''
+This file contains the Window class which is used to create 
+the main window of the program and all of the GUI functionalities.
+'''
+
+# Pyside2 imports
 from PySide2.QtWidgets import (
-    QApplication,
     QWidget,
     QPushButton,
     QMessageBox,
-    QDesktopWidget,
     QGridLayout,
-    QGroupBox,
-    QTextEdit,
-    QHBoxLayout,
-    QVBoxLayout,
     QLabel,
     QLineEdit,
-    QSpinBox,
     QDoubleSpinBox,
     QStyle
 )
 from PySide2.QtGui import QIcon, QCursor, QFont, QGuiApplication
 from PySide2 import QtCore
-import sys
+
+# Other imports
 import numpy as np
 
+# Local imports
 from InputParser import InputParser
 from Plotter import Plotter
 
@@ -34,6 +35,7 @@ class Window(QWidget):
         self.mainGrid = self.createMainGrid()
         self.setLayout(self.mainGrid)
 
+    # This function is used to center the window on the screen
     def centerWindow(self):
         window = self.window()
         window.setGeometry(
@@ -45,12 +47,19 @@ class Window(QWidget):
             ),
         )
 
+    # This function is used to create a push button
     def createPushButton(self, text):
         pushButton = QPushButton(text, self)
         return pushButton
 
-    def createMainGrid(self):
+    # This function is used to create an error message box
+    def createErrorMessageBox(self, text):
+        self.errorMsg = text
+        errorBox = QMessageBox().critical(self, "Error | Invalid Input", text)
 
+    # This function is used to create the main grid of the window
+    def createMainGrid(self):
+        # Initialize and configure the main input widgets
         self.fx = QLineEdit()
         self.xmin = QDoubleSpinBox()
         self.xmax = QDoubleSpinBox()
@@ -86,8 +95,8 @@ class Window(QWidget):
         self.plotButton.setFixedHeight(75)
         self.plotButton.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
 
+        # Create the main grid and add the widgets to it
         grid = QGridLayout()
-        grid.setHorizontalSpacing(20)
         grid.addWidget(self.fxLabel, 0, 0)
         grid.addWidget(self.fx, 0, 1)
         grid.addWidget(self.xminLabel, 1, 0)
@@ -99,22 +108,25 @@ class Window(QWidget):
         plotImage = Plotter(self, np.zeros((5, 5)), np.zeros((5, 5)))
         grid.addWidget(plotImage, 0, 2, 4, 1)
 
+        # Configure the grid
+        grid.setHorizontalSpacing(20)
         grid.setColumnMinimumWidth(0, 100)
         grid.setColumnMinimumWidth(1, 300)
         grid.setColumnMinimumWidth(2, 800)
 
+        # Connect the plot button to its action
         self.plotButton.clicked.connect(self.plotButtonAction)
         return grid
 
-    def createErrorMessageBox(self, text):
-        self.errorMsg = text
-        errorBox = QMessageBox().critical(self, "Error | Invalid Input", text)
-
+    
+    # This function is used to handle the plot button functionality
     def plotButtonAction(self):
         try:
+            # Parse the input, then plot the points returned by the parser
             Xs, Ys = InputParser(
                 self.fx.text(), self.xmin.text(), self.xmax.text()).parse()
-            self.mainGrid.itemAtPosition(0, 2).widget().__del__()
+            self.mainGrid.itemAtPosition(0, 2).widget().close()
             self.mainGrid.addWidget(Plotter(self, Xs, Ys), 0, 2, 4, 1)
         except Exception as e:
+            # If an error occurs, show an error message box
             self.createErrorMessageBox(str(e))

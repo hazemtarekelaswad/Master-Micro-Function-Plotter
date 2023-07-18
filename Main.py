@@ -1,21 +1,20 @@
+'''
+The main file of the program. This file is used to run the program.
+'''
 
-from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox, QDesktopWidget
-from PySide2.QtGui import QIcon, QCursor
-import sys
-
+from PySide2.QtWidgets import QApplication
 from Window import Window
-import numpy as np
 
 def main():
+    # Create the Qt Application
     app = QApplication()
 
+    # Create and show a window
     window = Window()
     window.show()
 
+    # Run the main Qt loop
     app.exec_()
-
-def test():
-    print(np.linspace(2, 54.5).shape)
 
 
 if __name__ == '__main__':

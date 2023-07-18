@@ -1,3 +1,8 @@
+'''
+This file contains the Plotter class which is used to create plotter canvas for the main window.
+It is an embedding of matplotlib into PySide2.
+'''
+
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -16,5 +21,5 @@ class Plotter(FigureCanvas):
         self.ax.set_title("Plot of the function f(x)")
         self.ax.grid()
     
-    def __del__(self):
+    def close(self):
         plt.close(self.fig)

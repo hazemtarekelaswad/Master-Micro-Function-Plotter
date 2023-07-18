@@ -1,3 +1,7 @@
+'''
+This file contains the InputParser class which is used to validate and parse all input data.
+'''
+
 import cexprtk as ctk
 import numpy as np
 
@@ -7,6 +11,11 @@ class InputParser:
         self.xmin = xmin
         self.xmax = xmax
     
+
+    ################### Utility Functions: #######################
+
+    # This function is used to parse the function f(x) and returns the Xs and Ys points
+    # based on the minimum and maximum x values
     def __parseFx(self):
         Xs = np.linspace(self.xmin, self.xmax)
         Ys = np.zeros(Xs.shape)
@@ -17,6 +26,7 @@ class InputParser:
             raise Exception("Error while parsing f(x)")
         return Xs, Ys
 
+    # These functions are used to validate the input data
     def __isXMinValid(self):
         if self.xmin == "":
             return False, "Xmin shouldn't be empty"
@@ -32,6 +42,7 @@ class InputParser:
             return False, "f(x) shouldn't be empty"
         return True, ""
 
+    # These functions are used to parse the input data if they are not floats
     def __parseXMin(self):
         try:
             self.xmin = float(self.xmin)
@@ -44,6 +55,8 @@ class InputParser:
             raise Exception("Xmax should be numeric")
         
     
+    ################### Public Functions: #######################
+    # This is the exposed function that is used to parse the input data
     def parse(self):
         isXMinValid, xMinErrorMsg = self.__isXMinValid()
         isXMaxValid, xMaxErrorMsg = self.__isXMaxValid()
