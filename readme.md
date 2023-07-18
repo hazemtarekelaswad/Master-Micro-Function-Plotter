@@ -52,4 +52,21 @@ pip install -r requirements.txt
 <p align="center">
   <img src="https://github.com/hazemtarekelaswad/Master-Micro-Function-Plotter/blob/main/screenshots/1.png?raw=true" />
 </p>
-
+<p align="center">
+  <img src="https://github.com/hazemtarekelaswad/Master-Micro-Function-Plotter/blob/main/screenshots/2.png?raw=true" />
+</p>
+<p align="center">
+  <img src="https://github.com/hazemtarekelaswad/Master-Micro-Function-Plotter/blob/main/screenshots/6.png?raw=true" />
+</p>
+<p align="center">
+  <img src="https://github.com/hazemtarekelaswad/Master-Micro-Function-Plotter/blob/main/screenshots/7.png?raw=true" />
+</p>
+<p align="center">
+  <img src="https://github.com/hazemtarekelaswad/Master-Micro-Function-Plotter/blob/main/screenshots/3.png?raw=true" />
+</p>
+<p align="center">
+  <img src="https://github.com/hazemtarekelaswad/Master-Micro-Function-Plotter/blob/main/screenshots/4.png?raw=true" />
+</p>
+<p align="center">
+  <img src="https://github.com/hazemtarekelaswad/Master-Micro-Function-Plotter/blob/main/screenshots/5.png?raw=true" />
+</p>
