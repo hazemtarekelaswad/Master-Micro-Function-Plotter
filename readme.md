@@ -1,6 +1,6 @@
 # Function Plotter
 ## Description
-A GUI application that takes a function and X range, and then plots the function in that given range.
+A desktop application designed to help users visualize mathematical functions by plotting them within a custom input range (x-range).
 
 ## Technologies used
 * Python
